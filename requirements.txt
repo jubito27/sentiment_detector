@@ -1,5 +1,7 @@
-pandas
-numpy 
-automac
-pickle
-scikit-learn
+
+automac==0.1.2
+lightgbm==4.7.0
+numpy==2.5.2
+pandas==3.0.5
+scikit-learn==1.9.0
+
