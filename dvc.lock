@@ -46,8 +46,8 @@ stages:
       nfiles: 2
     - path: src/data/feature_engineering.py
       hash: md5
-      md5: 8e380b037ad2d4492db0f640f952d696
-      size: 8871
+      md5: 324bb7c28186bfd835ed111e645e6ade
+      size: 8856
       isexec: true
     params:
       params.yaml:
@@ -55,16 +55,16 @@ stages:
     outs:
     - path: data/transformed/
       hash: md5
-      md5: 8110193269cbd50ed13941ee07be83dc.dir
-      size: 8904708
+      md5: 0e9159b88ed036b2004d2e81ad048773.dir
+      size: 4092542
       nfiles: 4
   model_training:
     cmd: python src/models/train_model.py
     deps:
     - path: data/transformed/
       hash: md5
-      md5: 8110193269cbd50ed13941ee07be83dc.dir
-      size: 8904708
+      md5: 0e9159b88ed036b2004d2e81ad048773.dir
+      size: 4092542
       nfiles: 4
     - path: src/models/train_model.py
       hash: md5
@@ -74,16 +74,16 @@ stages:
     outs:
     - path: model
       hash: md5
-      md5: 3deca429d61b5531af3e51d8f91179a7.dir
-      size: 2267053
+      md5: 62743ba60a1a3a0db6ab84abdca0df33.dir
+      size: 2314348
       nfiles: 1
   model_evaluation:
     cmd: python src/models/predict_model.py
     deps:
     - path: model
       hash: md5
-      md5: 3deca429d61b5531af3e51d8f91179a7.dir
-      size: 2267053
+      md5: 62743ba60a1a3a0db6ab84abdca0df33.dir
+      size: 2314348
       nfiles: 1
     - path: src/models/predict_model.py
       hash: md5
@@ -97,6 +97,6 @@ stages:
     outs:
     - path: reports/figures/scores.csv
       hash: md5
-      md5: a76bef400c625ebcd83da2397298475d
-      size: 139
+      md5: b499999b9abf2e19bc291076daded3b9
+      size: 140
       isexec: true

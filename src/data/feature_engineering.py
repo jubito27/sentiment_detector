@@ -7,7 +7,7 @@ from typing import Tuple
 import numpy as np
 import pandas as pd
 import yaml
-from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.preprocessing import LabelEncoder
 
 
@@ -101,24 +101,24 @@ def encoding_columns(
         raise ValueError(f"Invalid max_features value: {max_features}. It must be greater than 0.")
 
     try:
-        tfidf = TfidfVectorizer(max_features=max_features)
+        cv = CountVectorizer(max_features=max_features)
 
         logger.debug("Fitting TF-IDF vectorizer on training content")
-        x_train_sparse = tfidf.fit_transform(train["content"])
+        x_train_sparse = cv.fit_transform(train["content"])
 
         logger.debug("Transforming test content using fitted TF-IDF vectorizer")
-        x_test_sparse = tfidf.transform(test["content"])
+        x_test_sparse = cv.transform(test["content"])
 
         logger.debug("TF-IDF feature matrix shapes - train: %s, test: %s", x_train_sparse.shape, x_test_sparse.shape)
 
         x_train = pd.DataFrame(
             x_train_sparse.toarray(),
-            columns=tfidf.get_feature_names_out(),
+            columns=cv.get_feature_names_out(),
         )
 
         x_test = pd.DataFrame(
             x_test_sparse.toarray(),
-            columns=tfidf.get_feature_names_out(),
+            columns=cv.get_feature_names_out(),
         )
 
         label_encoder = LabelEncoder()
