@@ -1,4 +1,4 @@
-
+dvc==3.67.1
 automac==0.1.2
 lightgbm==4.7.0
 numpy==2.5.2
